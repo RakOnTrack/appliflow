@@ -6,41 +6,68 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <!-- Header with Hide & Close -->
+  <!-- Header -->
   <header class="header">
     <img src="icons/logo.png" alt="AppliFlow" class="logo">
     <h1>AppliFlow</h1>
-    <div class="window-controls">
-      <button id="btn-hide" title="Minimize">—</button>
-      <button id="btn-close" title="Close">✕</button>
-    </div>
   </header>
 
-  <!-- Job Page UI -->
-  <section id="job-ui" hidden>
-     <!-- Resume Upload -->
-   <label for="resume-upload">Upload Resume:</label>
-   <input type="file" id="resume-upload" accept=".pdf,.doc,.docx" />
-   <button id="btn-upload-resume">Load Resume</button>
-    <div id="ats-pill" class="ats-pill"></div>
-    <div id="experiences" class="exp-container"></div>
-    <div class="footer-actions">
-      <button id="btn-reset">Reset</button>
-      <button id="btn-save">Save Job</button>
+  <!-- Login UI -->
+  <section id="login-ui" hidden>
+    <div style="padding: 12px;">
+      <h3>Login</h3>
+      <input type="email" id="login-email" placeholder="Email" style="width:100%;padding:6px;margin-bottom:8px;box-sizing:border-box;">
+      <input type="password" id="login-password" placeholder="Password" style="width:100%;padding:6px;margin-bottom:8px;box-sizing:border-box;">
+      <button id="btn-login" class="btn-primary">Login</button>
+      <p id="login-error" style="color:red;font-size:0.85em;"></p>
     </div>
   </section>
 
-  <!-- Docs Page UI -->
-  <section id="docs-ui" hidden>
-    <button id="btn-generate-impact">Generate Impact</button>
-    <button id="btn-generate-cover">Generate Cover Letter</button>
+  <!-- Job Page UI -->
+  <section id="job-ui" hidden>
+    <div style="padding: 8px;">
+      <!-- Resume Upload -->
+      <label for="resume-upload"><strong>Upload Resume (PDF/TXT):</strong></label>
+      <input type="file" id="resume-upload" accept=".pdf,.txt" />
+      <button id="btn-upload-resume">Load Resume</button>
+      <p id="resume-status" style="font-size:0.85em;color:#555;"></p>
+
+      <hr style="margin: 10px 0;">
+
+      <!-- Job Details -->
+      <h3 style="margin:0 0 8px;">Job Details</h3>
+      <input type="text" id="job-title" placeholder="Job Title" style="width:100%;padding:6px;margin-bottom:6px;box-sizing:border-box;">
+      <input type="text" id="job-company" placeholder="Company" style="width:100%;padding:6px;margin-bottom:6px;box-sizing:border-box;">
+      <input type="text" id="job-link" placeholder="Job Posting URL" style="width:100%;padding:6px;margin-bottom:6px;box-sizing:border-box;" readonly>
+      <select id="job-status" style="width:100%;padding:6px;margin-bottom:6px;box-sizing:border-box;">
+        <option value="Applied">Applied</option>
+        <option value="Interview">Interview</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="Offer">Offer</option>
+      </select>
+
+      <hr style="margin: 10px 0;">
+
+      <!-- Job Description -->
+      <label for="job-desc"><strong>Job Description:</strong></label>
+      <div style="font-size:0.8em;color:#777;margin-bottom:4px;">Paste the job description here so you can compare it to your resume later in the app.</div>
+      <textarea id="job-desc" placeholder="Paste the full job description here..." rows="8"
+        style="width:100%;padding:6px;box-sizing:border-box;border:1px solid #ddd;border-radius:4px;resize:vertical;font-family:inherit;font-size:0.9em;"></textarea>
+
+      <p id="job-status-msg" style="font-size:0.85em;color:#555;"></p>
+    </div>
+
+    <div class="footer-actions">
+      <button id="btn-save-job">Save Job</button>
+    </div>
   </section>
 
   <!-- Fallback UI -->
   <section id="fallback-ui" hidden>
-    <p>No supported context detected.</p>
+    <p style="padding: 12px;">Navigate to a job posting page (LinkedIn, Workday, etc.) to save jobs with AppliFlow.</p>
   </section>
 
+  <script src="lib/pdf.min.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

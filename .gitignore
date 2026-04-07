@@ -8,7 +8,13 @@ chrome-extension/*.log
 
 # Environment files
 *.env
+*.env.local
+.env*.local
 config/*.env
+
+# Next.js
+.next/
+out/
 
 # OS generated files
 .DS_Store
